@@ -66,6 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id){
+    setState(() {
+      _userTransactions.removeWhere((tx) {
+        return tx.id == id;
+      });
+    });
+  }
+
   void _startAddNewTransaction(ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -111,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     MediaQuery.of(context).padding.top -
                     appBar.preferredSize.height) *
                 0.7,
-            child: TransactionList(_userTransactions),
+            child: TransactionList(_userTransactions, _deleteTransaction),
           ),
         ],
       ),
