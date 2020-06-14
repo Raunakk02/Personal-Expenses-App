@@ -104,8 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+
     final _isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+        mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text('Expense Planner'),
@@ -118,8 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final txListWidget = Container(
-      height: (MediaQuery.of(context).size.height -
-              MediaQuery.of(context).padding.top -
+      height: (mediaQuery.size.height -
+              mediaQuery.padding.top -
               appBar.preferredSize.height) *
           0.7,
       child: TransactionList(_userTransactions, _deleteTransaction),
@@ -144,8 +147,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           if (!_isLandscape)
             Container(
-              height: (MediaQuery.of(context).size.height -
-                      MediaQuery.of(context).padding.top -
+              height: (mediaQuery.size.height -
+                      mediaQuery.padding.top -
                       appBar.preferredSize.height) *
                   0.3,
               child: Chart(_recentTransactions),
@@ -153,8 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
           if (!_isLandscape) txListWidget,
           if (_isLandscape)  _showChart
                 ? Container(
-                    height: (MediaQuery.of(context).size.height -
-                            MediaQuery.of(context).padding.top -
+                    height: (mediaQuery.size.height -
+                            mediaQuery.padding.top -
                             appBar.preferredSize.height) *
                         0.7,
                     child: Chart(_recentTransactions),
